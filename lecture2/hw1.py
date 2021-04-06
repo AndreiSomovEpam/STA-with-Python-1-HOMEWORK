@@ -6,24 +6,16 @@ from typing import Iterable
 from pip._vendor.resolvelib.resolvers import Result
 
 
-def main():
-    pass
-
-
-if __name__ == "__main__":
-    main()
-
-
 def open_and_read_a_file(filepath: str) -> str:
     with open(filepath) as file:
         return file.read()
 
 
-def is_line_valid(line: str) -> bool:
+def validate_line(line: str) -> bool:
     return len(line.split()) == 5
 
 
-def is_date_valid(line: str) -> bool:
+def validate_date(line: str) -> bool:
     return bool(re.search(r"\d{4}-\d{2}-\d{2}", line))
 
 
@@ -40,8 +32,8 @@ def hw1():
     for line in all_lines_from_the_file:
         Result = namedtuple('Result', 'result validator_name')
         check_data(line, (
-            (Result(is_date_valid(line), is_date_valid.__name__)),
-            (Result(is_line_valid(line), is_line_valid.__name__))))
+            (Result(validate_date(line), validate_date.__name__)),
+            (Result(validate_line(line), validate_line.__name__))))
 
 
 def writeAFailureToFile(content: str):

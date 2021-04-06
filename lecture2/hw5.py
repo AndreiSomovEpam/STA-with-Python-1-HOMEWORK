@@ -1,11 +1,3 @@
-def main():
-    pass
-
-
-if __name__ == "__main__":
-    main()
-
-
 def custom_range(stop, *args, start=None, step=1) -> str:
     str = ""
     for el in args:
