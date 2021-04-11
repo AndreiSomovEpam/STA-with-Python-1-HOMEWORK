@@ -9,12 +9,6 @@ import re
 
 # def io_func(logfile_path, result_file_path):
 def io_func():
-    # filter logfile_path, writes into the result_file_path
-    # read a file
-    # filter 304 lines
-    # get IPs
-    # write IPs into the new file
-
     write_to_file(get_ips(get_failures(read_from_file())))
 
 
@@ -52,5 +46,5 @@ def test_myfunc_negative():
     error_list = list(filter(lambda x: 'HTTP/1.1" 304' not in x, fails))
     assert len(error_list) == 0
 
-
+io_func()
 test_myfunc_negative()
