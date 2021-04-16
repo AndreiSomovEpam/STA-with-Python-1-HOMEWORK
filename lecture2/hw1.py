@@ -22,7 +22,7 @@ def validate_date(line: str) -> bool:
 def check_data(line: str, validators: Iterable[Result]) -> str:
     for validator in validators:
         if not validator.result:
-            writeAFailureToFile(line)
+            write_failure_to_file(line)
     return Path("testdata/failures.txt").absolute()
 
 
@@ -36,7 +36,7 @@ def hw1():
             (Result(validate_line(line), validate_line.__name__))))
 
 
-def writeAFailureToFile(content: str):
+def write_failure_to_file(content: str):
     with open("testdata/failures.txt", "a") as myfile:
         myfile.write(content)
 

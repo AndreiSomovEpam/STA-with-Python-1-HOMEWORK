@@ -6,8 +6,16 @@ def func1(a, b):
 
 
 def cache(func: Callable) -> Callable:
-    def inner(a, b):
-        return func(a, b)
+    prev_args = None
+    prev_result = None
+
+    def inner(*args):
+        nonlocal prev_args, prev_result
+        if prev_args == args:
+            return prev_result
+        prev_args = args
+        prev_result = func(*args)
+        return prev_result
     return inner
 
 

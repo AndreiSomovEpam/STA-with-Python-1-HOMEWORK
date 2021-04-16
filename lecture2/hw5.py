@@ -1,4 +1,4 @@
-def custom_range(stop, *args, start=None, step=1) -> str:
+def custom_range(stop, *args, start=None, step=1) -> list[str]:
     str = ""
     for el in args:
         str += el
@@ -7,7 +7,7 @@ def custom_range(stop, *args, start=None, step=1) -> str:
         startChar = str.index(start)
     else:
         startChar = start
-    return str[startChar:stopChar:step]
+    return list(str[startChar:stopChar:step])
 
 
 custom_range("w", *["string.ascii_lowercase", "one"])
