@@ -18,7 +18,7 @@ def is_armstrong(number: int) -> bool:
     numbers_as_list = [int(x) for x in str(number)]
     mapped_numbers = [x ** len(numbers_as_list) for x in numbers_as_list]
     reduced_numbers = reduce(lambda x, y: x + y, mapped_numbers)
-    return reduced_numbers is number
+    return reduced_numbers == number
 
 
 print(is_armstrong(153))

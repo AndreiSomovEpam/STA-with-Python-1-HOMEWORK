@@ -4,22 +4,20 @@
 # write negative test "test_myfunc_negative"
 # Set pytest as default runner https://stackoverflow.com/questions/6397063/how-do-i-configure-pycharm-to-run-py-test-tests
 # hit Ctrl+Shift+F10 or RMB on the file to run tests
-import re
 
 
-# def io_func(logfile_path, result_file_path):
 def io_func():
     write_to_file(get_ips(get_failures(read_from_file())))
 
 
 def write_to_file(content):
-    with open("failures.txt", "a") as myfile:
+    with open("failures.txt", "w") as myfile:
         myfile.writelines(s + '\n' for s in content)
 
 
 def read_from_file():
-    file = open("log_file").read()
-    return file.split("\n", -1)
+    with open("log_file") as f:
+        return f.readlines()
 
 
 def get_failures(content):
@@ -31,7 +29,7 @@ def get_ips(content):
 
 
 def get_ip(line):
-    return re.search("\d{1,3}.\d{1,3}.\d{1,3}.\d{1,3}", line).group()
+    return line.split(" - - ")[0]
 
 
 def test_myfunc_positive():
@@ -46,5 +44,6 @@ def test_myfunc_negative():
     error_list = list(filter(lambda x: 'HTTP/1.1" 304' not in x, fails))
     assert len(error_list) == 0
 
-io_func()
-test_myfunc_negative()
+
+if __name__ == "__main__":
+    io_func()
