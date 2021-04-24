@@ -2,15 +2,11 @@ import itertools
 from typing import Any, List
 
 
-def combinations(*args: List[Any]) -> List[List]:
+def combinations(*args: List[Any]) -> list[tuple[Any, ...]]:
     my_list = []
-    combinations = itertools.combinations(args, 2)
-    for combination in combinations:
-        for one in combination[0]:
-            for two in combination[1]:
-                my_list.append([one, two])
-
+    for i in itertools.product(*args):
+        my_list.append(i)
     return my_list
 
 
-combinations([1, 2], [3], [4, 5, 6], [7], [8, 9])
+print(combinations([1, 2], [3, 4]))
